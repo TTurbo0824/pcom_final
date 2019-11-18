@@ -1,20 +1,19 @@
-let serial;          // variable to hold an instance of the serialport library
-let portName = '/dev/ttyACM0'; // fill in your serial port name here
-let inData;                             // for incoming serial data
+var serial;          // variable to hold an instance of the serialport library
+var portName = '/dev/cu.usbmodem1421';  // fill in your serial port name here
+var inData;                             // for incoming serial data
+let serial;
 
 function serialEvent() {
   inData = Number(serial.read());
 }
+// Although you’re reading the incoming data, you’re not displaying it anywhere yet. Add a draw() function and print the sensor value to the screen. Start by adding a createCanvas() to the top of your setup() like so:
 
 function setup() {
   createCanvas(400, 300);
 
   // serial
   serial = new p5.SerialPort(document.location.hostname);
-  // set callback functions for list and data events:
-  serial.on('list', printList);
-  serial.on('data', serialEvent);
-  // open the serial port:
+  serial.on('inData', serialEvent);
   serial.open(portName);
 }
 
