@@ -3,6 +3,7 @@
 */
 
 //Libraries
+#include <Adafruit_Sensor.h>
 #include <DHT.h>;
 
 //Constants
