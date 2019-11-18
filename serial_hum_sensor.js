@@ -1,6 +1,6 @@
-var serial;          // variable to hold an instance of the serialport library
-var portName = '/dev/cu.usbmodem1421';  // fill in your serial port name here
-var inData;                             // for incoming serial data
+let serial;          // variable to hold an instance of the serialport library
+let portName = '/dev/ttyACM0'; // fill in your serial port name here
+let inData;                             // for incoming serial data
 let serial;
 
 function serialEvent() {
