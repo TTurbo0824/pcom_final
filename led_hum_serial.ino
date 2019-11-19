@@ -11,9 +11,13 @@ DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
 int ledPin = 13;
 int incomingByte;
 int blinkTime = 500;
+int humI; float humF;
+
+float tempF;
+int tempI;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(ledPin, OUTPUT);
 
   while (!Serial.available()) { // until the server responds,
@@ -27,24 +31,19 @@ void loop() {
   //  delay(2000);
   if (Serial.available() > 0) {   // see if there's incoming serial data
     incomingByte = Serial.read(); // read it
-    if (incomingByte == 'H'){
-    blinkyBlinky(5, blinkTime); // 5 is number of blinks, blinkTime is the milliseconds in each state from above: int blinkTime = 500;
+    if (incomingByte > 20) {
+      blinkyBlinky(5, blinkTime); // 5 is number of blinks, blinkTime is the milliseconds in each state from above: int blinkTime = 500;
+    }
   }
-}
-
-  float humF;
-  int humI;
-  float tempF;
-  int tempI;
   humF = dht.readHumidity() * 100;
   humI = (int)humF;
   tempF = dht.readTemperature() * 100;
   tempI = (int)tempF;
 
-  Serial.println(humI);
-  Serial.println(",");
+  Serial.print(humI);
+  Serial.print(",");
   Serial.println(tempI);
-  delay(2000); //Delay 2 sec.
+  delay(30); //Delay 2 sec.
 }
 
 void blinkyBlinky(int repeats, int time) {
