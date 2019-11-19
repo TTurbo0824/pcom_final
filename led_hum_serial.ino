@@ -27,8 +27,10 @@ void loop() {
   //  delay(2000);
   if (Serial.available() > 0) {   // see if there's incoming serial data
     incomingByte = Serial.read(); // read it
+    if (incomingByte == 'H'){
     blinkyBlinky(5, blinkTime); // 5 is number of blinks, blinkTime is the milliseconds in each state from above: int blinkTime = 500;
   }
+}
 
   float humF;
   int humI;
