@@ -1,24 +1,42 @@
-let portName = '/dev/ttyACM0'; // fill in your serial port name here
+let serial;          // variable to hold an instance of the serialport library
+let portName = '/dev/ttyACM0';  // fill in your serial port name here
 let inData;                             // for incoming serial data
-let serial;
+
+
+function serverConnected() {
+  console.log('connected to server.');
+}
+
+
+function serialError(err) {
+  console.log('Something went wrong with the serial port.');
+}
 
 function serialEvent() {
-  inData = Number(serial.read());
+  inData = serial.readStringUntil("\n");
+  console.log(inData/100+'%');
 }
-// Although you’re reading the incoming data, you’re not displaying it anywhere yet. Add a draw() function and print the sensor value to the screen. Start by adding a createCanvas() to the top of your setup() like so:
 
 function setup() {
   createCanvas(400, 300);
 
   // serial
-  serial = new p5.SerialPort(document.location.hostname);
-  serial.on('inData', serialEvent);
+  serial = new p5.SerialPort();
+  serial.on('list', printList);
   serial.open(portName);
+  serial.on('data', serialEvent);
+  serial.on('connected', serverConnected);
+  serial.on('error', serialError);
 }
 
+function printList(portList){
+  for(let i =0; i< portList.length;i++){
+  console.log(i+" " +portList[i]);
+}
+}
 //Then here’s your draw() function:
 function draw() {
   background(0);
   fill(255);
-  text("humidity: " + inData, 30, 30);
+  text("humidity: " + inData/100 + '%', 30, 30);
 }
