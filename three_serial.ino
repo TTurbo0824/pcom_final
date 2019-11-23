@@ -8,7 +8,7 @@
 DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
 
 //Variables
-int pumpPin = 11;
+int pumpPin = A0;
 int lampPin = 12;
 int fanPin = 13;
 int incomingByte;
@@ -16,6 +16,15 @@ int humI; float humF;
 
 float tempF;
 int tempI;
+
+/*
+  fanBlinky(5000);
+  fanBlinky(10000);
+  lampBlinky(5000);
+  lampBlinky(10000);
+  pumpBlinky(5000);
+  pumpBlinky(10000);
+*/
 
 void setup() {
   Serial.begin(115200);
@@ -35,11 +44,12 @@ void loop() {
   if (Serial.available() > 0) {   // see if there's incoming serial data
     incomingByte = Serial.read(); // read it
     if (incomingByte > 20) {
-      blinkyBlinky(5, 500, 500); // 5 is number of blinks, blinkTime is the milliseconds in each state from above: int blinkTime = 500;
+      lampBlinky(10000); // 5 is number of blinks, blinkTime is the milliseconds in each state from above: int blinkTime = 500;
     } else if (incomingByte > 30) {
-      blinkyBlinky(1, 5000, 0);
+      fanBlinky(5000);
     }
   }
+
   humF = dht.readHumidity() * 100;
   humI = (int)humF;
   tempF = dht.readTemperature() * 100;
@@ -51,29 +61,20 @@ void loop() {
   delay(30); //Delay 2 sec.
 }
 
-void fanBlinky(int repeats, int time, int time2) {
-  for (int i = 0; i < repeats; i++) {
-    digitalWrite(fanPin, HIGH);
-    delay(time);
-    digitalWrite(fanPin, LOW);
-    delay(time2);
-  }
+void fanBlinky(int time) {
+  digitalWrite(fanPin, HIGH);
+  delay(time);
+  digitalWrite(fanPin, LOW);
 }
 
-void lampBlinky(int repeats, int time, int time2) {
-  for (int i = 0; i < repeats; i++) {
-    digitalWrite(lampPin, HIGH);
-    delay(time);
-    digitalWrite(lampPin, LOW);
-    delay(time2);
-  }
+void lampBlinky(int time) {
+  digitalWrite(lampPin, HIGH);
+  delay(time);
+  digitalWrite(lampPin, LOW);
 }
 
-void pumpBlinky(int repeats, int time, int time2) {
-  for (int i = 0; i < repeats; i++) {
-    digitalWrite(pumpPin, HIGH);
-    delay(time);
-    digitalWrite(pumpPin, LOW);
-    delay(time2);
-  }
+void pumpBlinky(int time) {
+  digitalWrite(pumpPin, HIGH);
+  delay(time);
+  digitalWrite(pumpPin, LOW);
 }
