@@ -18,12 +18,12 @@ float tempF;
 int tempI;
 
 /*
-  fanBlinky(5000);
-  fanBlinky(10000);
-  lampBlinky(5000);
-  lampBlinky(10000);
-  pumpBlinky(5000);
-  pumpBlinky(10000);
+  fanBlinky(5);
+  fanBlinky(10);
+  lampBlinky(50);
+  lampBlinky(10);
+  pumpBlinky(5);
+  pumpBlinky(10);
 */
 
 void setup() {
@@ -44,9 +44,9 @@ void loop() {
   if (Serial.available() > 0) {   // see if there's incoming serial data
     incomingByte = Serial.read(); // read it
     if (incomingByte > 20) {
-      lampBlinky(10000); // 5 is number of blinks, blinkTime is the milliseconds in each state from above: int blinkTime = 500;
+      lampBlinky(10); // 5 is number of blinks, blinkTime is the milliseconds in each state from above: int blinkTime = 500;
     } else if (incomingByte > 30) {
-      fanBlinky(5000);
+      fanBlinky(5);
     }
   }
 
@@ -63,18 +63,18 @@ void loop() {
 
 void fanBlinky(int time) {
   digitalWrite(fanPin, HIGH);
-  delay(time);
+  delay(time*1000);
   digitalWrite(fanPin, LOW);
 }
 
 void lampBlinky(int time) {
   digitalWrite(lampPin, HIGH);
-  delay(time);
+  delay(time*1000);
   digitalWrite(lampPin, LOW);
 }
 
 void pumpBlinky(int time) {
   digitalWrite(pumpPin, HIGH);
-  delay(time);
+  delay(time*1000);
   digitalWrite(pumpPin, LOW);
 }
