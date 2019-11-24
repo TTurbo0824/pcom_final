@@ -12,22 +12,25 @@ void setup() {
   pinMode(waterPin, OUTPUT);
   pinMode(fanPin, OUTPUT);
 
-  const char* input = "{\"name\":\"taiwan\",\"data\":[10, 5, 0]}";
+  char json[] = "{\"name\":\"taiwan\",\"data\":[10, 5, 0]}";
   StaticJsonDocument<256> doc;
-  DeserializationError err = deserializeJson(doc, input);
+  DeserializationError err = deserializeJson(doc, json);
 
   if (err) {
-    Serial.print("Error: ");
-    Serial.println(err.c_str());
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.c_str());
     return;
   }
+  
   int lightTime = doc["data"][0];
   int waterTime = doc["data"][1];
   int fanTime = doc["data"][2];
+  
   lightBlinky(lightTime);
   waterBlinky(waterTime);
   fanBlinky(fanTime);
 }
+
 void lightBlinky(int time) {
   digitalWrite(lightPin, HIGH);
   delay(time * 1000);
@@ -45,7 +48,6 @@ void fanBlinky(int time) {
   delay(time * 1000);
   digitalWrite(fanPin, LOW);
 }
-
 
 void loop() {
   // put your main code here, to run repeatedly:
