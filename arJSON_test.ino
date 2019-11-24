@@ -14,18 +14,18 @@ void setup() {
 
   char json[] = "{\"name\":\"taiwan\",\"data\":[10, 5, 0]}";
   StaticJsonDocument<256> doc;
-  DeserializationError err = deserializeJson(doc, json);
+  DeserializationError error = deserializeJson(doc, json);
 
-  if (err) {
+  if (error) {
     Serial.print(F("deserializeJson() failed: "));
     Serial.println(error.c_str());
     return;
   }
-  
+
   int lightTime = doc["data"][0];
   int waterTime = doc["data"][1];
   int fanTime = doc["data"][2];
-  
+
   lightBlinky(lightTime);
   waterBlinky(waterTime);
   fanBlinky(fanTime);
@@ -48,6 +48,7 @@ void fanBlinky(int time) {
   delay(time * 1000);
   digitalWrite(fanPin, LOW);
 }
+
 
 void loop() {
   // put your main code here, to run repeatedly:
