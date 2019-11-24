@@ -4,7 +4,7 @@
 
 //Constants
 #define DHTPIN 8     // what pin we're connected to
-#define DHTTYPE DHT22   // DHT 22  (AM2302)
+#define DHTTYPE DHT22   // DHT 22
 DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
 
 //Variables
@@ -12,19 +12,10 @@ int pumpPin = A0;
 int lampPin = 12;
 int fanPin = 13;
 int incomingByte;
-int humI; float humF;
-
+float humF;
+int humI;
 float tempF;
 int tempI;
-
-/*
-  fanBlinky(5);
-  fanBlinky(10);
-  lampBlinky(50);
-  lampBlinky(10);
-  pumpBlinky(5);
-  pumpBlinky(10);
-*/
 
 void setup() {
   Serial.begin(115200);
@@ -42,9 +33,9 @@ void setup() {
 void loop() {
   //  delay(2000);
   if (Serial.available() > 0) {   // see if there's incoming serial data
-    incomingByte = Serial.read(); // read it
+    incomingByte = Serial.read(); 
     if (incomingByte > 20) {
-      lampBlinky(10); // 5 is number of blinks, blinkTime is the milliseconds in each state from above: int blinkTime = 500;
+      lampBlinky(10); 
     } else if (incomingByte > 30) {
       fanBlinky(5);
     }
@@ -58,7 +49,7 @@ void loop() {
   Serial.print(humI);
   Serial.print(",");
   Serial.println(tempI);
-  delay(30); //Delay 2 sec.
+  delay(30); 
 }
 
 void fanBlinky(int time) {
