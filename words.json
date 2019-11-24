@@ -1,0 +1,46 @@
+{
+  "words": [
+
+    {
+      "name": "taiwan",
+      "light": "10",
+      "water": "5",
+      "fan": "0"
+    },
+
+    {
+      "name": "support",
+      "light": "0",
+      "water": "10",
+      "fan": "0"
+    },
+    
+    {
+      "name": "indifferent",
+      "light": "0",
+      "water": "0",
+      "fan": "10"
+    },
+
+    {
+      "name": "candle",
+      "light": "10",
+      "water": "0",
+      "fan": "10"
+    },
+
+    {
+      "name": "march",
+      "light": "0",
+      "water": "5",
+      "fan": "5"
+    },
+
+    {
+      "name": "voice",
+      "light": "0",
+      "water": "5",
+      "fan": "10"
+    }
+  ]
+}
