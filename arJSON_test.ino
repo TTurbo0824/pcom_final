@@ -1,3 +1,5 @@
+// ArduinoJson (library by Benoit Blanchon) should be installed and included
+
 #include <ArduinoJson.h>
 
 int waterPin = A0;
