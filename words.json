@@ -3,44 +3,94 @@
 
     {
       "name": "taiwan",
-      "light": "10",
-      "water": "5",
-      "fan": "0"
+      "light": 10,
+      "water": 5,
+      "fan": 0
     },
 
     {
       "name": "support",
-      "light": "0",
-      "water": "10",
-      "fan": "0"
-    },
-    
-    {
-      "name": "indifferent",
-      "light": "0",
-      "water": "0",
-      "fan": "10"
+      "light": 0,
+      "water": 10,
+      "fan": 0
     },
 
     {
-      "name": "candle",
-      "light": "10",
-      "water": "0",
-      "fan": "10"
+      "name": "indifferent",
+      "light": 0,
+      "water": 0,
+      "fan": 10
+    },
+
+    {
+      "name": "yellow",
+      "light": 5,
+      "water": 0,
+      "fan": 0
+    },
+    
+    {
+      "name": "ribbon",
+      "light": 5,
+      "water": 5,
+      "fan": 0
     },
 
     {
       "name": "march",
-      "light": "0",
-      "water": "5",
-      "fan": "5"
+      "light": 5,
+      "water": 0,
+      "fan": 5
     },
 
     {
-      "name": "voice",
-      "light": "0",
-      "water": "5",
-      "fan": "10"
+      "name": "belief",
+      "light": 5,
+      "water": 5,
+      "fan": 5
+    },
+
+    {
+      "name": "gray",
+      "light": 0,
+      "water": 5,
+      "fan": 0
+    },
+
+    {
+      "name": "apple",
+      "light": 0,
+      "water": 5,
+      "fan": 5
+    },
+
+    {
+      "name": "data",
+      "light": 0,
+      "water": 0,
+      "fan": 5
+    },
+
+    {
+      "name": "escape",
+      "light": 10,
+      "water": 0,
+      "fan": 0
+    },
+    
+    {
+      "name": "side",
+      "light": 10,
+      "water": 0,
+      "fan": 5
+    },
+
+    {
+      "name": "candle",
+      "light": 10,
+      "water": 0,
+      "fan": 10
     }
+
   ]
 }
