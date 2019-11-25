@@ -1,20 +1,17 @@
 //Libraries
-#include <ArduinoJson.h>
 #include <Adafruit_Sensor.h>
 #include <DHT.h>;
 
 //Constants
-#define DHTPIN 8
+#define DHTPIN 8     // what pin we're connected to
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
-DHT dht(DHTPIN, DHTTYPE); // Initialize DHT sensor for normal 16mhz Arduino
+DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
 
 //Variables
 int waterPin = A0;
 int lightPin = 12;
 int fanPin = 13;
-//int incomingByte;
-String input;
-
+int incomingByte;
 float humF;
 int humI;
 float tempF;
@@ -35,18 +32,19 @@ void setup() {
 
 void loop() {
   //  delay(2000);
-  DynamicJsonDocument doc(1024);
-
   if (Serial.available() > 0) {   // see if there's incoming serial data
-    input = Serial.readStringUntil('\n');
-    deserializeJson(doc, input);
-    int lightTime = doc["data"][0];
-    int waterTime = doc["data"][1];
-    int fanTime = doc["data"][2];
-
-    lightBlinky(lightTime);
-    waterBlinky(waterTime);
-    fanBlinky(fanTime);
+    incomingByte = Serial.read();
+    if (incomingByte = 1) {
+      lightBlinky(5);
+    }
+    if (incomingByte = 2) {
+      lightBlinky(5);
+      fanBlinky(5);
+    }
+    if (incomingByte = 3) {
+      lightBlinky(5);
+      waterBlinky(5);
+      }
   }
 
   humF = dht.readHumidity() * 100;
