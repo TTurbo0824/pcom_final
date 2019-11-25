@@ -4,6 +4,7 @@ let words = [];
 let occurrences = [];
 let lang, speechRec;
 let w;
+let freq = {};
 let options = {
   baudRate: 115200
 };
@@ -59,13 +60,13 @@ function gotSpeech() {
   if (speechRec.resultValue) {
     //createP(speechRec.resultString);
     w = speechRec.resultString;
-    if (w !== words[words.length - 1]) {
+    if (w !== words[(words.length - 1)]) {
       words.push(w);
-	    
-      for (let a = 0, b = words.length; a < b; a++) {
-        occurrences[words[a]] = (occurrences[words[a]] || 0) + 1;
-      }
-      for (let i = 0; i < libra.length; i++) {
+    }
+
+
+	
+    for (let i = 0; i < libra.length; i++) {
         if (words[words.length - 1] == libra[i]) {
           noStroke();
           fill(0);
@@ -73,6 +74,12 @@ function gotSpeech() {
           fill(255);
           textSize(70);
           text(words[words.length - 1], width / 5, height / 3);
+          if (words[(words.length - 1)] in freq){
+            freq[(words.length -1)] += 1;
+            }else{
+            freq[(words.length -1)] = 1;
+            }
+	  console.log(freq);	
           serial.write(i+1);
           console.log("got from ard");
         } else {
@@ -81,7 +88,6 @@ function gotSpeech() {
       }
     }
   }
-}
 
 function printList(portList) {
   for (let i = 0; i < portList.length; i++) {
