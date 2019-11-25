@@ -34,38 +34,111 @@ void loop() {
   //  delay(2000);
   if (Serial.available() > 0) {   // see if there's incoming serial data
     incomingByte = Serial.read();
-    if (incomingByte > 20) {
-      lightBlinky(10);
-    } else if (incomingByte > 30) {
+    if (incomingByte == 1) { //yellow
+      lightBlinky(5);
+    }
+    if (incomingByte == 2) { //ribbon
+      lightBlinky(5);
+      waterBlinky(5);
+    }
+    if (incomingByte == 3) { //march
+      lightBlinky(5);
       fanBlinky(5);
     }
+    if (incomingByte == 4) { //belief
+      lightBlinky(5);
+      waterBlinky(5);
+      fanBlinky(5);
+    }
+    if (incomingByte == 5) { //gray
+      waterBlinky(5);
+    }
+    if (incomingByte == 6) { //apple
+      waterBlinky(5);
+      fanBlinky(5);
+    }
+    if (incomingByte == 7) { //data
+      fanBlinky(5);
+    }
+    if (incomingByte == 8) { //escape
+      lightBlinky(10);
+    }
+    if (incomingByte == 9) { //side
+      lightBlinky(10);
+      fanBlinky(5);
+    }
+    if (incomingByte == 10) { //candle
+      lightBlinky(10);
+      fanBlinky(10);
+    }
+    if (incomingByte == 11) { //taiwan
+      lightBlinky(10);
+      waterBlinky(5);
+    }
+    if (incomingByte == 12) { //voice
+      lightBlinky(10);
+      waterBlinky(5);
+      fanBlinky(5);
+    }
+    if (incomingByte == 13) { //revolution
+      lightBlinky(10);
+      waterBlinky(5);
+      fanBlinky(10);
+    }
+    if (incomingByte == 14) { //rainbow
+      lightBlinky(10);
+      waterBlinky(10);
+    }
+    if (incomingByte == 15) { //power
+      lightBlinky(10);
+      waterBlinky(10);
+      fanBlinky(5);
+    }
+    if (incomingByte == 16) { //support
+      waterBlinky(10);
+    }
+    if (incomingByte == 17) { //peace
+      waterBlinky(10);
+      fanBlinky(5);
+    }
+    if (incomingByte == 18) { //cold
+      waterBlinky(10);
+      fanBlinky(10);
+    }
+    if (incomingByte == 19) { //indifferent
+      fanBlinky(10);
+    }
+
+    if (incomingByte == 20) { //share
+      waterBlinky(5);
+      fanBlinky(10);
+    }
+
+    humF = dht.readHumidity() * 100;
+    humI = (int)humF;
+    tempF = dht.readTemperature() * 100;
+    tempI = (int)tempF;
+
+    Serial.print(humI);
+    Serial.print(",");
+    Serial.println(tempI);
+    delay(30);
   }
 
-  humF = dht.readHumidity() * 100;
-  humI = (int)humF;
-  tempF = dht.readTemperature() * 100;
-  tempI = (int)tempF;
+  void lightBlinky(int time) {
+    digitalWrite(lightPin, HIGH);
+    delay(time * 1000);
+    digitalWrite(lightPin, LOW);
+  }
 
-  Serial.print(humI);
-  Serial.print(",");
-  Serial.println(tempI);
-  delay(30);
-}
+  void waterBlinky(int time) {
+    digitalWrite(waterPin, HIGH);
+    delay(time * 1000);
+    digitalWrite(waterPin, LOW);
+  }
 
-void lightBlinky(int time) {
-  digitalWrite(lightPin, HIGH);
-  delay(time*1000);
-  digitalWrite(lightPin, LOW);
-}
-
-void waterBlinky(int time) {
-  digitalWrite(waterPin, HIGH);
-  delay(time*1000);
-  digitalWrite(waterPin, LOW);
-}
-
-void fanBlinky(int time) {
-  digitalWrite(fanPin, HIGH);
-  delay(time*1000);
-  digitalWrite(fanPin, LOW);
-}
+  void fanBlinky(int time) {
+    digitalWrite(fanPin, HIGH);
+    delay(time * 1000);
+    digitalWrite(fanPin, LOW);
+  }
