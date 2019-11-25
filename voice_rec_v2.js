@@ -1,5 +1,5 @@
 // inspired by Daniel Shiffman's code with texrt video
-let libra = ['yellow', 'ribbon', 'march', 'belief', 'gray', 'apple', 'data', 'escape', 'side', 'candle', 'taiwan', 'voice', 'revolution', 'rainbow', 'power', 'support', 'peace', 'cold', 'indifferent'];
+let libra = ['yellow', 'ribbon', 'march', 'belief', 'gray', 'apple', 'data', 'escape', 'side', 'candle', 'taiwan', 'voice', 'revolution', 'rainbow', 'power', 'support', 'peace', 'cold', 'indifferent', 'share'];
 let words = [];
 let occurrences = [];
 let lang, speechRec;
@@ -73,7 +73,7 @@ function gotSpeech() {
           fill(255);
           textSize(70);
           text(words[words.length - 1], width / 5, height / 3);
-          serial.write(72);
+          serial.write(i+1);
           console.log("got from ard");
         } else {
           serial.write(0);
