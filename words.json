@@ -90,7 +90,49 @@
       "light": 10,
       "water": 0,
       "fan": 10
-    }
+    },
+    
+    {
+            "name" : "rainbow",
+            "light" : "10",
+            "water" : "10",
+            "fan" : "0"
+        },
+
+        {
+            "name" : "peace",
+            "light" : "0",
+            "water" : "10",
+            "fan" : "5"
+        },
+
+        {
+            "name" : "cold",
+            "light" : "0",
+            "water" : "10",
+            "fan" : "10"
+        },
+
+        {
+            "name" : "revolution",
+            "light" : "10",
+            "water" : "5",
+            "fan" : "10"
+        },
+
+        {
+            "name" : "voice",
+            "light" : "10",
+            "water" : "5",
+            "fan" : "5"
+        },
+
+        {
+            "name" : "power",
+            "light" : "10",
+            "water" : "10",
+            "fan" : "5"
+        }
 
   ]
 }
