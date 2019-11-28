@@ -1,5 +1,5 @@
 // inspired by Daniel Shiffman's code with texrt video
-let libra = ['yellow', 'ribbon', 'march', 'belief', 'gray', 'apple', 'data', 'escape', 'side', 'candle', 'taiwan', 'voice', 'revolution', 'rainbow', 'power', 'support', 'peace', 'cold', 'indifferent', 'share'];
+let libra = ['yellow', 'ribbon', 'March', 'belief', 'gray', 'apple', 'data', 'Korea', 'side', 'candle', 'Taiwan', 'voice', 'revolution', 'rainbow', 'power', 'support', 'peace', 'cold', 'indifferent', 'share'];
 let words = [];
 let occurrences = [];
 let lang, speechRec;
@@ -31,7 +31,7 @@ function serialEvent() {
       rect(0, height / 2, width, height);
       fill(255);
       textSize(32);
-      text("humidity: " + sensors[0] / 100 + '%, temperature: ' + sensors[1] / 100 + '%', width / 5, 2 * height / 3);
+      text("humidity: " + sensors[0] / 100 + '%, temperature: ' + sensors[1] / 100 + '°C', width / 5, 2 * height / 3);
     }
   }
 }
