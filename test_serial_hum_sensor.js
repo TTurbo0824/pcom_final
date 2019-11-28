@@ -1,3 +1,8 @@
+/*
+One of the first serial communication tests on p5.js side
+Displaying sensor values from DHT22 on the screen
+*/
+
 let serial; // variable to hold an instance of the serialport library
 let portName = '/dev/ttyACM0'; // fill in your serial port name here
 let inData; // for incoming serial data
@@ -6,7 +11,6 @@ let sensors;
 function serverConnected() {
   console.log('connected to server.');
 }
-
 
 function serialError(err) {
   console.log('Something went wrong with the serial port.');
@@ -44,4 +48,3 @@ function printList(portList) {
     console.log(i + " " + portList[i]);
   }
 }
-//Then here’s your draw() function:
