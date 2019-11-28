@@ -1,3 +1,5 @@
+// If serial communication is available and if there is any incoming signal, LED light will blink
+
 void setup() {
   Serial.begin(9600); // initialize serial communications
   pinMode(0, OUTPUT);
@@ -21,7 +23,7 @@ void loop() {
       delay(500);              // wait for a second
     }
     //   int sensorValue = analogRead(A0);
-    //   // print out the value you read:
+    //   print out the value you read:
     Serial.println(0);
     delay(1); // delay in between reads for stability
   }
