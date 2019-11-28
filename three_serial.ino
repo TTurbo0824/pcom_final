@@ -1,3 +1,8 @@
+/*
+At this point, we needed to figure out the ways to have multiple functions to run at the same time
+*/
+
+
 //Libraries
 #include <Adafruit_Sensor.h>
 #include <DHT.h>;
