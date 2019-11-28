@@ -16,9 +16,9 @@ float humF;
 int humI;
 float tempF;
 int tempI;
-unsigned long lightMillis = 0;
-unsigned long waterMillis = 0;
-unsigned long fanMillis = 0;
+unsigned long lightMillis;
+unsigned long waterMillis;
+unsigned long fanMillis;
 unsigned long currentMillis;
 
 void setup() {
@@ -168,16 +168,18 @@ void fanBlinky(int timeOn) {
 }
 
 /*
-  void loop() {
-  uint32_t currentTime = millis();
+
+void loop() {
+  unsigned long currentTime = millis();
   if (currentTime > nextTime) {
-   if (digitalRead(PIN)) {
-     digitalWrite(PIN, LOW);
-     nextTime = currentTime + OFF_INTERVAL;
-   } else {
-     digitalWrite(PIN, HIGH);
-     nextTime = currentTime + ON_INTERVAL;
-   }
+    if (digitalRead(PIN)) {
+      digitalWrite(PIN, LOW);
+      nextTime = currentTime + OFF_INTERVAL;
+    } else {
+      digitalWrite(PIN, HIGH);
+      nextTime = currentTime + ON_INTERVAL;
+    }
   }
-  }
+}
+
 */
