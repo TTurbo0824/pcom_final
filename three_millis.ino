@@ -46,7 +46,7 @@ void loop() {
       lightBlinky(5);
       waterBlinky(5);
     }
-    if (incomingByte == 3) { //march
+    if (incomingByte == 3) { //March
       lightBlinky(5);
       fanBlinky(5);
     }
@@ -65,7 +65,7 @@ void loop() {
     if (incomingByte == 7) { //data
       fanBlinky(5);
     }
-    if (incomingByte == 8) { //escape
+    if (incomingByte == 8) { //Korea
       lightBlinky(10);
     }
     if (incomingByte == 9) { //side
@@ -76,7 +76,7 @@ void loop() {
       lightBlinky(10);
       fanBlinky(10);
     }
-    if (incomingByte == 11) { //taiwan
+    if (incomingByte == 11) { //Taiwan
       lightBlinky(10);
       waterBlinky(5);
     }
