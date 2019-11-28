@@ -1,3 +1,9 @@
+/*
+Two-way serial communication between Arduino and p5.js
+Displaying sensor values from DHT22 sensor to p5.js sketch
+The word processed through p5.js will trigger LED light to blink
+*/
+
 //Libraries
 #include <Adafruit_Sensor.h>
 #include <DHT.h>;
