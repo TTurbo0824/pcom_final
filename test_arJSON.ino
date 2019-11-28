@@ -1,3 +1,4 @@
+// Testing ArduinoJSON but the code below was not used in the project
 // ArduinoJson (library by Benoit Blanchon) should be installed and included
 
 #include <ArduinoJson.h>
