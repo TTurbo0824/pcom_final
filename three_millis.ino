@@ -16,9 +16,9 @@ float humF;
 int humI;
 float tempF;
 int tempI;
-unsigned long lightMillis;
-unsigned long waterMillis;
-unsigned long fanMillis;
+unsigned long lightMillis = 0;
+unsigned long waterMillis = 0;
+unsigned long fanMillis = 0;
 unsigned long currentMillis;
 
 void setup() {
@@ -131,32 +131,53 @@ void loop() {
   }
 }
 
-void lightBlinky(int time) {
-  lightMillis = millis();
-  if (currentMillis - lightMillis <= time * 1000) {
-    digitalWrite(lightPin, HIGH);
-  }
-  if (currentMillis - lightMillis > time * 1000) {
-    digitalWrite(lightPin, LOW);
-  }
-}
-
-void waterBlinky(int time) {
-  waterMillis = millis();
-  if (currentMillis - waterMillis <= time * 1000) {
-    digitalWrite(waterPin, HIGH);
-  }
-  if (currentMillis - waterMillis > time * 1000) {
-    digitalWrite(waterPin, LOW);
+void lightBlinky(int timeOn) {
+  if (currentMillis > lightMillis) {
+    if (digitalRead(lightPin)) {
+      digitalWrite(lightPin, LOW);
+      lightMillis = currentMillis + (15 - timeOn) * 1000;
+    } else {
+      digitalWrite(lightPin, HIGH);
+      lightMillis = currentMillis + timeOn * 1000;
+    }
   }
 }
 
-void fanBlinky(int time) {
-  fanMillis = millis();
-  if (currentMillis - fanMillis <= time * 1000) {
-    digitalWrite(fanPin, HIGH);
-  }
-  if (currentMillis - fanMillis > time * 1000) {
-    digitalWrite(fanPin, LOW);
+void waterBlinky(int timeOn) {
+  if (currentMillis > waterMillis) {
+    if (digitalRead(waterPin)) {
+      digitalWrite(waterPin, LOW);
+      waterMillis = currentMillis + (15 - timeOn) * 1000;
+    } else {
+      digitalWrite(waterPin, HIGH);
+      waterMillis = currentMillis + timeOn * 1000;
+    }
   }
 }
+
+void fanBlinky(int timeOn) {
+  if (currentMillis > fanMillis) {
+    if (digitalRead(fanPin)) {
+      digitalWrite(fanPin, LOW);
+      fanMillis = currentMillis + (15 - timeOn) * 1000;
+    } else {
+      digitalWrite(fanPin, HIGH);
+      fanMillis = currentMillis + timeOn * 1000;
+    }
+  }
+}
+
+/*
+  void loop() {
+  uint32_t currentTime = millis();
+  if (currentTime > nextTime) {
+   if (digitalRead(PIN)) {
+     digitalWrite(PIN, LOW);
+     nextTime = currentTime + OFF_INTERVAL;
+   } else {
+     digitalWrite(PIN, HIGH);
+     nextTime = currentTime + ON_INTERVAL;
+   }
+  }
+  }
+*/
