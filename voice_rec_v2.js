@@ -5,9 +5,7 @@ let occurrences = [];
 let lang, speechRec;
 let w;
 let freq = {};
-let options = {
-  baudRate: 115200
-};
+let options = {baudRate: 115200};
 let serial; // variable to hold an instance of the serialport library
 let portName = '/dev/ttyACM0'; // fill in your serial port name here
 let inData; // for incoming serial data
@@ -60,34 +58,32 @@ function gotSpeech() {
   if (speechRec.resultValue) {
     //createP(speechRec.resultString);
     w = speechRec.resultString;
-    if (w !== words[(words.length - 1)]) {
+    if (w != = words[(words.length - 1)]) {
       words.push(w);
     }
 
-
-	
     for (let i = 0; i < libra.length; i++) {
-        if (words[words.length - 1] == libra[i]) {
-          noStroke();
-          fill(0);
-          rect(0, 0, width, height / 2);
-          fill(255);
-          textSize(70);
-          text(words[words.length - 1], width / 5, height / 3);
-          if (words[(words.length - 1)] in freq){
-            freq[(words.length -1)] += 1;
-            }else{
-            freq[(words.length -1)] = 1;
-            }
-	  console.log(freq);	
-          serial.write(i+1);
-          console.log("got from ard");
+      if (words[words.length - 1] == libra[i]) {
+        noStroke();
+        fill(0);
+        rect(0, 0, width, height / 2);
+        fill(255);
+        textSize(70);
+        text(words[words.length - 1], width / 5, height / 3);
+        if (words[(words.length - 1)] in freq) {
+          freq[(words.length - 1)] += 1;
         } else {
-          serial.write(0);
+          freq[(words.length - 1)] = 1;
         }
+        console.log(freq);
+        serial.write(i + 1);
+        console.log("got from ard");
+      } else {
+        serial.write(0);
       }
     }
   }
+}
 
 function printList(portList) {
   for (let i = 0; i < portList.length; i++) {
