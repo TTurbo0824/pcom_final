@@ -1,5 +1,5 @@
 /*
-At this point, we needed to figure out the ways to have multiple functions to run at the same time
+  At this point, we needed to figure out the ways to have multiple functions to run at the same time
 */
 
 
@@ -118,32 +118,33 @@ void loop() {
       waterBlinky(5);
       fanBlinky(10);
     }
-
-    humF = dht.readHumidity() * 100;
-    humI = (int)humF;
-    tempF = dht.readTemperature() * 100;
-    tempI = (int)tempF;
-
-    Serial.print(humI);
-    Serial.print(",");
-    Serial.println(tempI);
-    delay(30);
   }
 
-  void lightBlinky(int time) {
-    digitalWrite(lightPin, HIGH);
-    delay(time * 1000);
-    digitalWrite(lightPin, LOW);
-  }
+  humF = dht.readHumidity() * 100;
+  humI = (int)humF;
+  tempF = dht.readTemperature() * 100;
+  tempI = (int)tempF;
 
-  void waterBlinky(int time) {
-    digitalWrite(waterPin, HIGH);
-    delay(time * 1000);
-    digitalWrite(waterPin, LOW);
-  }
+  Serial.print(humI);
+  Serial.print(",");
+  Serial.println(tempI);
+  delay(30);
+}
 
-  void fanBlinky(int time) {
-    digitalWrite(fanPin, HIGH);
-    delay(time * 1000);
-    digitalWrite(fanPin, LOW);
-  }
+void lightBlinky(int time) {
+  digitalWrite(lightPin, HIGH);
+  delay(time * 1000);
+  digitalWrite(lightPin, LOW);
+}
+
+void waterBlinky(int time) {
+  digitalWrite(waterPin, HIGH);
+  delay(time * 1000);
+  digitalWrite(waterPin, LOW);
+}
+
+void fanBlinky(int time) {
+  digitalWrite(fanPin, HIGH);
+  delay(time * 1000);
+  digitalWrite(fanPin, LOW);
+}
