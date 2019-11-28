@@ -11,7 +11,6 @@
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
 DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
 
-
 //Variables
 int chk;
 float hum;  //Stores humidity value
