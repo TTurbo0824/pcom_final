@@ -39,7 +39,7 @@ void loop() {
   if (Serial.available() > 0) {   // see if there's incoming serial data
     currentMillis = millis();
     incomingByte = Serial.read();
-    if (incomingByte == 1) { //attack
+    if (incomingByte == 1) { //yellow
       lightBlinky(5);
     }
     if (incomingByte == 2) { //ribbon
@@ -114,16 +114,23 @@ void loop() {
       fanBlinky(10);
     }
 
-    if (incomingByte == 20) { //share
-      waterBlinky(5);
-      fanBlinky(10);
+//    if (incomingByte == 20) { //share
+//      waterBlinky(5);
+//      fanBlinky(10);
+//    }
+    if (incomingByte == 20) {
+      if (digitalRead(lightPin)) {
+        digitalWrite(lightPin, LOW);
+      }
+      if (digitalRead(waterPin)) {
+        digitalWrite(waterPin, LOW);
+      }
+      if (digitalRead(fanPin)) {
+        digitalWrite(fanPin, LOW);
+      }
     }
-    //    if (incomingByte == 0) {
-    //      delay(10000);
-    //      digitalWrite(lightPin, LOW);
-    //      digitalWrite(waterPin, LOW);
-    //      digitalWrite(fanPin, LOW);
-    //    }
+
+
 
     humF = dht.readHumidity() * 100;
     humI = (int)humF;
@@ -137,33 +144,39 @@ void loop() {
   }
 }
 
+
 void lightBlinky(int timeOn) {
   if (currentMillis > lightMillis) {
-    lightMillis = currentMillis + (15 - timeOn) * 1000;
-  } else {
-    digitalWrite(lightPin, HIGH);
-    lightMillis = currentMillis + timeOn * 1000;
+    if (digitalRead(lightPin)) {
+      lightMillis = currentMillis + (15 - timeOn) * 1000;
+    } else {
+      digitalWrite(lightPin, HIGH);
+      lightMillis = currentMillis + timeOn * 1000;
+    }
   }
 }
 
 void waterBlinky(int timeOn) {
   if (currentMillis > waterMillis) {
-    digitalWrite(waterPin, LOW);
-    waterMillis = currentMillis + (15 - timeOn) * 1000;
-  } else {
-    digitalWrite(waterPin, HIGH);
-    waterMillis = currentMillis + timeOn * 1000;
+    if (digitalRead(waterPin)) {
+      digitalWrite(waterPin, LOW);
+      waterMillis = currentMillis + (15 - timeOn) * 1000;
+    } else {
+      digitalWrite(waterPin, HIGH);
+      waterMillis = currentMillis + timeOn * 1000;
+    }
   }
 }
 
-
 void fanBlinky(int timeOn) {
   if (currentMillis > fanMillis) {
-    digitalWrite(fanPin, LOW);
-    fanMillis = currentMillis + (15 - timeOn) * 1000;
-  } else {
-    digitalWrite(fanPin, HIGH);
-    fanMillis = currentMillis + timeOn * 1000;
+    if (digitalRead(fanPin)) {
+      digitalWrite(fanPin, LOW);
+      fanMillis = currentMillis + (15 - timeOn) * 1000;
+    } else {
+      digitalWrite(fanPin, HIGH);
+      fanMillis = currentMillis + timeOn * 1000;
+    }
   }
 }
 
