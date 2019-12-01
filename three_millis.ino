@@ -114,11 +114,11 @@ void loop() {
       fanBlinky(10);
     }
 
-//    if (incomingByte == 20) { //share
-//      waterBlinky(5);
-//      fanBlinky(10);
-//    }
-    if (incomingByte == 20) {
+    if (incomingByte == 20) { //share
+      waterBlinky(5);
+      fanBlinky(10);
+    }
+    if (incomingByte == 21) {
       if (digitalRead(lightPin)) {
         digitalWrite(lightPin, LOW);
       }
@@ -129,8 +129,6 @@ void loop() {
         digitalWrite(fanPin, LOW);
       }
     }
-
-
 
     humF = dht.readHumidity() * 100;
     humI = (int)humF;
