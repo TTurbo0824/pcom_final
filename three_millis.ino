@@ -20,13 +20,18 @@ unsigned long lightMillis = 0;
 unsigned long waterMillis = 0;
 unsigned long fanMillis = 0;
 unsigned long currentMillis;
+bool isLight;
+bool isFan;
+bool isWater;
 
 void setup() {
   Serial.begin(115200);
   pinMode(lightPin, OUTPUT);
   pinMode(waterPin, OUTPUT);
   pinMode(fanPin, OUTPUT);
-
+  isLight = false;
+  isFan = false;
+  isWater = false;
   while (!Serial.available()) { // until the server responds,
     Serial.println("hello");    // send a hello message
     delay(500);                 // every half second
@@ -42,6 +47,9 @@ void loop() {
 
     if (incomingByte == 1) { //yellow
       lightBlinky(5);
+      isLight = true;
+      isFan = false;
+      isWater = false;
     }
     if (incomingByte == 2) { //ribbon
       lightBlinky(5);
@@ -52,6 +60,7 @@ void loop() {
       fanBlinky(5);
     }
     if (incomingByte == 4) { //belief
+      
       lightBlinky(5);
       waterBlinky(5);
       fanBlinky(5);
@@ -147,7 +156,7 @@ void lightBlinky(int timeOn) {
   if (currentMillis > lightMillis) {
 
     
-    if (digitalRead(lightPin)) {
+    if (isLight) {
       digitalWrite(lightPin, LOW);
       lightMillis = currentMillis + (15 - timeOn) * 1000;
     } else {
@@ -159,7 +168,7 @@ void lightBlinky(int timeOn) {
 
 void waterBlinky(int timeOn) {
   if (currentMillis > waterMillis) {
-    if (digitalRead(waterPin)) {
+    if (isWater) {
       digitalWrite(waterPin, LOW);
       waterMillis = currentMillis + (15 - timeOn) * 1000;
     } else {
@@ -171,7 +180,7 @@ void waterBlinky(int timeOn) {
 
 void fanBlinky(int timeOn) {
   if (currentMillis > fanMillis) {
-    if (digitalRead(fanPin)) {
+    if (isFan) {
       digitalWrite(fanPin, LOW);
       fanMillis = currentMillis + (15 - timeOn) * 1000;
     } else {
