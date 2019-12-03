@@ -35,10 +35,11 @@ void setup() {
 }
 
 void loop() {
-  //  delay(2000);
+  currentMillis = millis();
+
   if (Serial.available() > 0) {   // see if there's incoming serial data
-    currentMillis = millis();
     incomingByte = Serial.read();
+
     if (incomingByte == 1) { //yellow
       lightBlinky(5);
     }
@@ -142,10 +143,12 @@ void loop() {
   }
 }
 
-
 void lightBlinky(int timeOn) {
   if (currentMillis > lightMillis) {
+
+    
     if (digitalRead(lightPin)) {
+      digitalWrite(lightPin, LOW);
       lightMillis = currentMillis + (15 - timeOn) * 1000;
     } else {
       digitalWrite(lightPin, HIGH);
@@ -177,7 +180,6 @@ void fanBlinky(int timeOn) {
     }
   }
 }
-
 
 /*
   void loop() {
