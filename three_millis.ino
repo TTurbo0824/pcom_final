@@ -4,11 +4,11 @@
 
 //Constants
 #define DHTPIN 8     // what pin we're connected to
-#define DHTTYPE DHT22   // DHT 22  (AM2302)
+#define DHTTYPE DHT11   // DHT 22  (AM2302)
 DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
 
 //Variables
-int waterPin = A0;
+int waterPin = 11;
 int lightPin = 12;
 int fanPin = 13;
 int incomingByte;
@@ -64,93 +64,82 @@ void loop() {
     if (incomingByte == 1) { //yellow
       lightOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 2) { //ribbon
+    else if (incomingByte == 2) { //ribbon
       lightOffAt = millis() + 5 * 1000;
       waterOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 3) { //march
+    else if (incomingByte == 3) { //march
       lightOffAt = millis() + 5 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 4) { //belief
+    else if (incomingByte == 4) { //belief
       lightOffAt = millis() + 5 * 1000;
       waterOffAt = millis() + 5 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 5) { //gray
+   else if (incomingByte == 5) { //gray
       waterOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 6) { //apple
+   else if (incomingByte == 7) { //data
+      fanOffAt = millis() + 5 * 1000;
+    }
+   else if (incomingByte == 8) { //Korea
+      lightOffAt = millis() + 10 * 1000;
+    }
+  else if (incomingByte == 6) { //apple
       waterOffAt = millis() + 5 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 7) { //data
-      fanOffAt = millis() + 5 * 1000;
-    }
-    if (incomingByte == 8) { //Korea
-      lightOffAt = millis() + 10 * 1000;
-    }
-    if (incomingByte == 9) { //side
+    else if (incomingByte == 9) { //side
       lightOffAt = millis() + 10 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 10) { //candle
+   else if (incomingByte == 10) { //candle
       lightOffAt = millis() + 10 * 1000;
       fanOffAt = millis() + 10 * 1000;
     }
-    if (incomingByte == 11) { //Taiwan
+    else if (incomingByte == 11) { //Taiwan
       lightOffAt = millis() + 10 * 1000;
       waterOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 12) { //voice
+    else if (incomingByte == 12) { //voice
       lightOffAt = millis() + 10 * 1000;
       waterOffAt = millis() + 5 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 13) { //revolution
+    else if (incomingByte == 13) { //revolution
       lightOffAt = millis() + 10 * 1000;
       waterOffAt = millis() + 5 * 1000;
       fanOffAt = millis() + 10 * 1000;
     }
-    if (incomingByte == 14) { //rainbow
+    else if (incomingByte == 14) { //rainbow
       lightOffAt = millis() + 10 * 1000;
       waterOffAt = millis() + 10 * 1000;
     }
-    if (incomingByte == 15) { //power
+    else if (incomingByte == 15) { // power
       lightOffAt = millis() + 10 * 1000;
       waterOffAt = millis() + 10 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 16) { //support
+    else if (incomingByte == 16) { //support
       waterOffAt = millis() + 10 * 1000;
     }
-    if (incomingByte == 17) { //peace
+    else if (incomingByte == 17) { //peace
       waterOffAt = millis() + 10 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 18) { //cold
+    else if (incomingByte == 18) { //cold
       waterOffAt = millis() + 10 * 1000;
       fanOffAt = millis() + 10 * 1000;
     }
-    if (incomingByte == 19) { //indifferent
+    else if (incomingByte == 19) { //indifferent
       fanOffAt = millis() + 10 * 1000;
     }
 
-    if (incomingByte == 20) { //share
+    else if (incomingByte == 20) { //share
       waterOffAt = millis() + 5 * 1000;
       fanOffAt = millis() + 10 * 1000;
     }
-//    if (incomingByte == 21) { //stop
-//      if (digitalRead(lightPin)) {
-//        digitalWrite(lightPin, LOW);
-//      }
-//      if (digitalRead(waterPin)) {
-//        digitalWrite(waterPin, LOW);
-//      }
-//      if (digitalRead(fanPin)) {
-//        digitalWrite(fanPin, LOW);
-//      }
-//    }
 
     humF = dht.readHumidity() * 100;
     humI = (int)humF;
