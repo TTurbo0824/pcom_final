@@ -16,23 +16,17 @@ float humF;
 int humI;
 float tempF;
 int tempI;
-unsigned long lightMillis = 0;
-unsigned long waterMillis = 0;
-unsigned long fanMillis = 0;
+unsigned long lightOffAt = 0;
+unsigned long waterOffAt = 0;
+unsigned long fanOffAt = 0;
 unsigned long currentMillis;
-bool isLignt;
-bool isWater;
-bool isFan;
 
 void setup() {
   Serial.begin(115200);
   pinMode(lightPin, OUTPUT);
   pinMode(waterPin, OUTPUT);
   pinMode(fanPin, OUTPUT);
-  isLight = false;
-  isWater = false;
-  isFan = false;
-  
+
   while (!Serial.available()) { // until the server responds,
     Serial.println("hello");    // send a hello message
     delay(500);                 // every half second
@@ -43,103 +37,120 @@ void setup() {
 void loop() {
   currentMillis = millis();
 
+  if (currentMillis > lightOffAt) {
+    digitalWrite(lightPin, LOW);
+  }
+  else if (lightOffAt >= currentMillis) {
+    digitalWrite(lightPin, HIGH);
+  }
+
+  if (currentMillis > waterOffAt) {
+    digitalWrite(waterPin, LOW);
+  }
+  else if (waterOffAt >= currentMillis) {
+    digitalWrite(waterPin, HIGH);
+  }
+
+  if (currentMillis > fanOffAt) {
+    digitalWrite(fanPin, LOW);
+  }
+  else if (fanOffAt >= currentMillis) {
+    digitalWrite(fanPin, HIGH);
+  }
+
   if (Serial.available() > 0) {   // see if there's incoming serial data
     incomingByte = Serial.read();
 
     if (incomingByte == 1) { //yellow
-     
-      isLight = true;
-      
-      lightBlinky(5);
+      lightOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 2) { //ribbon
-      lightBlinky(5);
-      waterBlinky(5);
+      lightOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 3) { //march
-      lightBlinky(5);
-      fanBlinky(5);
+      lightOffAt = millis() + 5 * 1000;
+      fanOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 4) { //belief
-      
-      lightBlinky(5);
-      waterBlinky(5);
-      fanBlinky(5);
+      lightOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 5 * 1000;
+      fanOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 5) { //gray
-      waterBlinky(5);
+      waterOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 6) { //apple
-      waterBlinky(5);
-      fanBlinky(5);
+      waterOffAt = millis() + 5 * 1000;
+      fanOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 7) { //data
-      fanBlinky(5);
+      fanOffAt = millis() + 5 * 1000;
     }
-    if (incomingByte == 8) { //escape
-      lightBlinky(10);
+    if (incomingByte == 8) { //Korea
+      lightOffAt = millis() + 10 * 1000;
     }
     if (incomingByte == 9) { //side
-      lightBlinky(10);
-      fanBlinky(5);
+      lightOffAt = millis() + 10 * 1000;
+      fanOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 10) { //candle
-      lightBlinky(10);
-      fanBlinky(10);
+      lightOffAt = millis() + 10 * 1000;
+      fanOffAt = millis() + 10 * 1000;
     }
-    if (incomingByte == 11) { //taiwan
-      lightBlinky(10);
-      waterBlinky(5);
+    if (incomingByte == 11) { //Taiwan
+      lightOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 12) { //voice
-      lightBlinky(10);
-      waterBlinky(5);
-      fanBlinky(5);
+      lightOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 5 * 1000;
+      fanOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 13) { //revolution
-      lightBlinky(10);
-      waterBlinky(5);
-      fanBlinky(10);
+      lightOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 5 * 1000;
+      fanOffAt = millis() + 10 * 1000;
     }
     if (incomingByte == 14) { //rainbow
-      lightBlinky(10);
-      waterBlinky(10);
+      lightOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 10 * 1000;
     }
     if (incomingByte == 15) { //power
-      lightBlinky(10);
-      waterBlinky(10);
-      fanBlinky(5);
+      lightOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 10 * 1000;
+      fanOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 16) { //support
-      waterBlinky(10);
+      waterOffAt = millis() + 10 * 1000;
     }
     if (incomingByte == 17) { //peace
-      waterBlinky(10);
-      fanBlinky(5);
+      waterOffAt = millis() + 10 * 1000;
+      fanOffAt = millis() + 5 * 1000;
     }
     if (incomingByte == 18) { //cold
-      waterBlinky(10);
-      fanBlinky(10);
+      waterOffAt = millis() + 10 * 1000;
+      fanOffAt = millis() + 10 * 1000;
     }
     if (incomingByte == 19) { //indifferent
-      fanBlinky(10);
+      fanOffAt = millis() + 10 * 1000;
     }
 
     if (incomingByte == 20) { //share
-      waterBlinky(5);
-      fanBlinky(10);
+      waterOffAt = millis() + 5 * 1000;
+      fanOffAt = millis() + 10 * 1000;
     }
-    if (incomingByte == 21) {
-      if (digitalRead(lightPin)) {
-        digitalWrite(lightPin, LOW);
-      }
-      if (digitalRead(waterPin)) {
-        digitalWrite(waterPin, LOW);
-      }
-      if (digitalRead(fanPin)) {
-        digitalWrite(fanPin, LOW);
-      }
-    }
+//    if (incomingByte == 21) { //stop
+//      if (digitalRead(lightPin)) {
+//        digitalWrite(lightPin, LOW);
+//      }
+//      if (digitalRead(waterPin)) {
+//        digitalWrite(waterPin, LOW);
+//      }
+//      if (digitalRead(fanPin)) {
+//        digitalWrite(fanPin, LOW);
+//      }
+//    }
 
     humF = dht.readHumidity() * 100;
     humI = (int)humF;
@@ -152,52 +163,3 @@ void loop() {
     delay(30);
   }
 }
-
-void lightBlinky(int timeOn) {
-  if (currentMillis - lightMillis > timeOn * 1000) {
-      digitalWrite(lightPin, LOW);
-    } else {
-      digitalWrite(lightPin, HIGH);
-      lightMillis = currentMillis;
-    }
-  }
-}
-
-void waterBlinky(int timeOn) {
-  if (currentMillis > waterMillis) {
-    if (isWater) {
-      digitalWrite(waterPin, LOW);
-      waterMillis = currentMillis + (15 - timeOn) * 1000;
-    } else {
-      digitalWrite(waterPin, HIGH);
-      waterMillis = currentMillis + timeOn * 1000;
-    }
-  }
-}
-
-void fanBlinky(int timeOn) {
-  if (currentMillis > fanMillis) {
-    if (isFan) {
-      digitalWrite(fanPin, LOW);
-      fanMillis = currentMillis + (15 - timeOn) * 1000;
-    } else {
-      digitalWrite(fanPin, HIGH);
-      fanMillis = currentMillis + timeOn * 1000;
-    }
-  }
-}
-
-/*
-  void loop() {
-  unsigned long currentTime = millis();
-  if (currentTime > nextTime) {
-   if (digitalRead(PIN)) {
-     digitalWrite(PIN, LOW);
-     nextTime = currentTime + OFF_INTERVAL;
-   } else {
-     digitalWrite(PIN, HIGH);
-     nextTime = currentTime + ON_INTERVAL;
-   }
-  }
-  }
-*/
