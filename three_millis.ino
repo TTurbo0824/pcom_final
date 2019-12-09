@@ -66,7 +66,7 @@ void loop() {
     }
     else if (incomingByte == 2) { //ribbon
       lightOffAt = millis() + 5 * 1000;
-      waterOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 1 * 1000;
     }
     else if (incomingByte == 3) { //march
       lightOffAt = millis() + 5 * 1000;
@@ -74,11 +74,11 @@ void loop() {
     }
     else if (incomingByte == 4) { //belief
       lightOffAt = millis() + 5 * 1000;
-      waterOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 1 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
    else if (incomingByte == 5) { //gray
-      waterOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 1 * 1000;
     }
    else if (incomingByte == 7) { //data
       fanOffAt = millis() + 5 * 1000;
@@ -87,7 +87,7 @@ void loop() {
       lightOffAt = millis() + 10 * 1000;
     }
   else if (incomingByte == 6) { //apple
-      waterOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 1 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
     else if (incomingByte == 9) { //side
@@ -100,36 +100,36 @@ void loop() {
     }
     else if (incomingByte == 11) { //Taiwan
       lightOffAt = millis() + 10 * 1000;
-      waterOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 1 * 1000;
     }
     else if (incomingByte == 12) { //voice
       lightOffAt = millis() + 10 * 1000;
-      waterOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 1 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
     else if (incomingByte == 13) { //revolution
       lightOffAt = millis() + 10 * 1000;
-      waterOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 1 * 1000;
       fanOffAt = millis() + 10 * 1000;
     }
     else if (incomingByte == 14) { //rainbow
       lightOffAt = millis() + 10 * 1000;
-      waterOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 3 * 1000;
     }
     else if (incomingByte == 15) { // power
       lightOffAt = millis() + 10 * 1000;
-      waterOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 3 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
     else if (incomingByte == 16) { //support
-      waterOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 3 * 1000;
     }
     else if (incomingByte == 17) { //peace
-      waterOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 3 * 1000;
       fanOffAt = millis() + 5 * 1000;
     }
     else if (incomingByte == 18) { //cold
-      waterOffAt = millis() + 10 * 1000;
+      waterOffAt = millis() + 3 * 1000;
       fanOffAt = millis() + 10 * 1000;
     }
     else if (incomingByte == 19) { //indifferent
@@ -137,7 +137,7 @@ void loop() {
     }
 
     else if (incomingByte == 20) { //share
-      waterOffAt = millis() + 5 * 1000;
+      waterOffAt = millis() + 1 * 1000;
       fanOffAt = millis() + 10 * 1000;
     }
 
